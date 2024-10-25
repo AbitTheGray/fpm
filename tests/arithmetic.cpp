@@ -25,8 +25,17 @@ TEST(arithmethic, subtraction)
 TEST(arithmethic, multiplication)
 {
     using P = fpm::fixed_24_8;
+    //using P = fpm::fixed_16_16;
+    //using P = fpm::fixed_8_24;
+    //using P = fpm::fixed<int16_t, int32_t, 8>;
 
-    EXPECT_EQ(P(-25.375), P(3.5) * P(-7.25));
+    //EXPECT_EQ(P(10), P(2) * P(5));
+    //EXPECT_EQ(P(10), P(2.5) * P(4));
+    //EXPECT_EQ(P(-10), P(2) * P(-5));
+    //EXPECT_EQ(P(-10), P(2.5) * P(-4));
+    //EXPECT_EQ(P(-25.375), P(3.5) * P(-7.25));
+    EXPECT_EQ(P(25.375), P(-3.5) * P(-7.25));
+    //EXPECT_EQ(P(25.375), P(3.5) * P(7.25));
 }
 
 TEST(arithmethic, division)

@@ -32,7 +32,7 @@ endif()
 # We need extra libraries on Windows
 if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
   target_compile_definitions(benchmark PRIVATE _CRT_SECURE_NO_WARNINGS)
-  target_link_libraries(benchmark Shlwapi)
+  target_link_libraries(benchmark shlwapi)
 endif()
 
 # Benchmark main library
