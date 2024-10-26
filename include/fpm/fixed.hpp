@@ -8,7 +8,7 @@
 #include <limits>
 #include <type_traits>
 
-#if defined(WIN32) && defined(_MSC_VER)
+#if defined(_WIN32) && defined(_MSC_VER)
 #include <__MSVC_Int128.hpp>
 #endif
 
@@ -221,7 +221,7 @@ using fixed_8_24 = fixed<std::int32_t, std::int64_t, 24>;
 #elif defined(__SIZEOF_INT128__)
 using int128_t = __int128_t;
 #define FPM_INT128 ::fpm::int128_t
-#elif defined(WIN32) && defined(_MSC_VER)
+#elif defined(_WIN32) && defined(_MSC_VER)
 using int128_t = std::_Signed128;
 #define FPM_INT128 ::fpm::int128_t
 #else
