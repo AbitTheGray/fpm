@@ -737,4 +737,41 @@ std::basic_istream<CharT, Traits>& operator>>(std::basic_istream<CharT, Traits>&
 
 }
 
+#ifdef __cpp_lib_format
+#include <format>
+#include <sstream>
+template<typename B, typename I, unsigned int F, bool R>
+struct formatter<fpm::fixed<B, I, F, R>, char>
+{
+    bool showpos = false;
+
+    template<class ParseContext>
+    constexpr typename ParseContext::iterator parse(ParseContext& ctx)
+    {
+        auto it = ctx.begin();
+        if(it != ctx.end() && *it == '+')
+        {
+            showpos = true;
+            ++it;
+        }
+        if(it != ctx.end() && *it != '}')
+        {
+            throw std::format_error("Invalid format");
+        }
+        return it;
+    }
+
+    template<typename FormatContext>
+    typename FormatContext::iterator format(const fpm::fixed<B, I, F, R>& value, FormatContext& ctx) const
+    {
+        std::ostringstream out;
+        if(showpos)
+            out << std::showpos;
+        out << value;
+
+        return std::ranges::copy(std::move(out).str(), ctx.out()).out;
+    }
+};
+#endif
+
 #endif
