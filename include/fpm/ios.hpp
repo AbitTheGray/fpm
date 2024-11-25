@@ -737,9 +737,12 @@ std::basic_istream<CharT, Traits>& operator>>(std::basic_istream<CharT, Traits>&
 
 }
 
+#if __cplusplus >= 202002L
+#   include <version>
+#endif
 #ifdef __cpp_lib_format
-#include <format>
-#include <sstream>
+#   include <format>
+#   include <sstream>
 template<typename CharT, typename B, typename I, unsigned int F, bool R>
 struct formatter<fpm::fixed<B, I, F, R>, CharT>
 {
