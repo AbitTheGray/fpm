@@ -740,8 +740,8 @@ std::basic_istream<CharT, Traits>& operator>>(std::basic_istream<CharT, Traits>&
 #ifdef __cpp_lib_format
 #include <format>
 #include <sstream>
-template<typename B, typename I, unsigned int F, bool R>
-struct formatter<fpm::fixed<B, I, F, R>, char>
+template<typename CharT, typename B, typename I, unsigned int F, bool R>
+struct formatter<fpm::fixed<B, I, F, R>, CharT>
 {
     bool showpos = false;
 
@@ -764,7 +764,7 @@ struct formatter<fpm::fixed<B, I, F, R>, char>
     template<typename FormatContext>
     typename FormatContext::iterator format(const fpm::fixed<B, I, F, R>& value, FormatContext& ctx) const
     {
-        std::ostringstream out;
+        std::basic_ostringstream<CharT> out;
         if(showpos)
             out << std::showpos;
         out << value;
