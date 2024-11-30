@@ -744,7 +744,7 @@ std::basic_istream<CharT, Traits>& operator>>(std::basic_istream<CharT, Traits>&
 #   include <format>
 #   include <sstream>
 template<typename CharT, typename B, typename I, unsigned int F, bool R>
-struct formatter<fpm::fixed<B, I, F, R>, CharT>
+struct std::formatter<fpm::fixed<B, I, F, R>, CharT>
 {
     bool showpos = false;
 
